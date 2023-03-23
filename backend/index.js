@@ -8,6 +8,9 @@ dotenv.config({ path:".env" })
 
 app.use(morgan("tiny"))
 
+app.use(express.urlencoded({extended:false}));
+app.use(express.json())
+
 const PORT = process.env.PORT;
 connectDB()
 
