@@ -1,5 +1,5 @@
 import express from "express";
-import { createBootcamp, deleteBootcamp, getBootcamp, getBootcamps, updateBootcamp } from "../controllers/Bootcamp";
+import { createBootcamp, deleteBootcamp, getBootcamp, getBootcamps, updateBootcamp } from "../controllers/Bootcamp.js";
 const router = express.Router();
 
 router.get("/",getBootcamps);
