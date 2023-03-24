@@ -50,14 +50,19 @@ export const createBootcamp = async(req,res) =>{
 
 export const getBootcamp = async(req,res) =>{
     try{
-        const { id } = req.params.id
+        const id = req.params.id
         const bootcamp = await Bootcamp.findById(id)
         
-        if(! bootcamp) return res.status(404).json({
+        console.log(bootcamp._id)
+        const bootcampId = await Bootcamp.findOne({
+            _id:id
+        })
+
+        if(!bootcampId) return res.status(404).json({
             error:"Bootcamp was not found.",
         })
 
-        return res.status(201).json({
+        return res.status(200).json({
             success:true,
             data:bootcamp
         })
@@ -75,7 +80,7 @@ export const updateBootcamp = async(req,res) =>{
         const { id } = req.params.id
         const bootcamp = await Bootcamp.findById(id)
         
-        if(! bootcamp) return res.status(404).json({
+        if(!bootcamp) return res.status(404).json({
             error:"Bootcamp was not found.",
         })
 
@@ -103,7 +108,7 @@ export const deleteBootcamp = async(req,res) =>{
         const { id } = req.params.id
         const bootcamp = await Bootcamp.findById(id)
         
-        if(! bootcamp) return res.status(404).json({
+        if(!bootcamp) return res.status(404).json({
             error:"Bootcamp was not found.",
         })
 
