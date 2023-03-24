@@ -22,9 +22,9 @@ export const createBootcamp = async(req,res) =>{
         const exists = await Bootcamp.findOne({
             name
         })
-        
-        if(!exists) return res.status(400).json({
-            error:`The ${name} bootcamp already exists.`,
+
+        if(exists) return res.status(400).json({
+            error:`The ${name.toLowerCase()} bootcamp already exists.`,
         })
 
         const bootcamp = new Bootcamp({
