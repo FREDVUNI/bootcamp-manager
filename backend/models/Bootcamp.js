@@ -15,7 +15,7 @@ const BootcampSchema = new mongoose.Schema({
         required:[true,"The bootcamp description is required."],
     },
     price:{
-        type:String,
+        type:Number,
         required:[true,"The bootcamp price is required."],
     }
 },{timestamps:true}) 

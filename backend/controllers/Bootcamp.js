@@ -2,7 +2,9 @@ import Bootcamp from "../models/Bootcamp.js";
 
 export const getBootcamps = async (req, res) => {
   try {
-    const bootcamps = await Bootcamp.find();
+    const bootcamps = await Bootcamp.find({
+      price: { $lte: 900 },
+    });
     return res.status(200).json({
       success: true,
       data: bootcamps,
@@ -56,7 +58,7 @@ export const getBootcamp = async (req, res) => {
         error: "Bootcamp was not found.",
       });
     }
-
+    // console.log(bootcamp._id.toString())
     return res.status(200).json({
       success: true,
       data: bootcamp,
