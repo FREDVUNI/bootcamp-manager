@@ -2,6 +2,16 @@ import Bootcamp from "../models/Bootcamp.js";
 
 export const getBootcamps = async (req, res) => {
   try {
+    let query;
+
+    const reqQuery = { ...req.query }
+    const removeField = ["sort"]
+    removeField.forEach((val) => delete reqQuery[val]) 
+    let queryStr = JSON.stringify(reqQuery)
+
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`)
+    console.log(queryStr)
+
     const bootcamps = await Bootcamp.find({
       price: { $lte: 900 },
     });
