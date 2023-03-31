@@ -8,7 +8,7 @@ import CustomButton from "./CustomButton";
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "",
     gap: theme.spacing(5),
     marginTop: theme.spacing(15),
     [theme.breakpoints.down("md")]: {
