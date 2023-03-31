@@ -24,7 +24,7 @@ export const getBootcamps = async (req, res) => {
     }
 
     const bootcamps = await query
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       data: bootcamps,
     });
