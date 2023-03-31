@@ -12,9 +12,9 @@ export const getBootcamps = async (req, res) => {
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`)
     console.log(queryStr)
 
-    const bootcamps = await Bootcamp.find({
-      price: { $lte: 900 },
-    });
+    const bootcamps = await Bootcamp.find(
+      JSON.parse(queryStr)
+    );
     return res.status(200).json({
       success: true,
       data: bootcamps,
