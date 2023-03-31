@@ -10,11 +10,20 @@ export const getBootcamps = async (req, res) => {
     let queryStr = JSON.stringify(reqQuery)
 
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`)
-    console.log(queryStr)
+    // console.log(queryStr)
 
-    const bootcamps = await Bootcamp.find(
-      JSON.parse(queryStr)
-    );
+    query = Bootcamp.find(JSON.parse(queryStr))
+
+    if(req.query.sort){
+      const sortByArr = req.query.sort.split(",")
+      const sortByStr = sortByArr.join("") 
+
+      query = query.sort(sortByStr)
+    }else{
+      query = query.sort('^price')
+    }
+
+    const bootcamps = await query
     return res.status(200).json({
       success: true,
       data: bootcamps,
