@@ -11,7 +11,7 @@ const Hero = () => {
     display: "flex",
     justifyContent: "center",
     gap: theme.spacing(5),
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(15),
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
       alignItems: "center",
@@ -31,8 +31,8 @@ const Hero = () => {
 
   return (
     <Box sx={{ backgroundColor: "", minHeight: "80vh" }}>
+      <Header />
       <Container>
-        <Header />
         <CustomBox>
           <Box sx={{ flex: "1" }}>
             <Typography
@@ -48,13 +48,15 @@ const Hero = () => {
               Welcome to our Bootcamp Manager landing page!
             </Typography>
             <Title variant="h1">
-            Our platform is designed to make it easy for students.
+              Our platform is designed to make it easy for students.
             </Title>
             <Typography
               variant="body2"
               sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}
             >
-              Whether you're running a coding bootcamp or a fitness bootcamp, we have the tools you need to manage student registration, track attendance, schedule classes, and more.
+              Whether you're running a coding bootcamp or a fitness bootcamp, we
+              have the tools you need to manage student registration, track
+              attendance, schedule classes, and more.
             </Typography>
             <CustomButton
               backgroundColor="#0F1B4C"

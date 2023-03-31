@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -94,13 +93,23 @@ const Header = () => {
   }));
 
   const NavbarContainer = styled(Container)(({ theme }) => ({
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 999,
+    background: "hsla(0,0%,100%,.95)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: theme.spacing(5),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(2),
     },
+    width: "100%",
+    paddingLeft: 0,
+    paddingRight: 0,
   }));
 
   const NavbarLogo = styled("img")(({ theme }) => ({
