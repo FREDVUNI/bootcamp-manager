@@ -1,21 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { FeaturedPlayListIcon } from "@mui/icons-material/FeaturedPlayList";
-import { MiscellaneousServicesIcon } from "@mui/icons-material/MiscellaneousServices";
-import { ListAltIcon } from "@mui/icons-material/ListAlt";
-import { HomeIcon } from "@mui/icons-material/Home";
-import { ContactsIcon } from "@mui/icons-material/Contacts";
 import { Container } from "@mui/system";
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  styled,
-} from "@mui/material";
+import {styled} from "@mui/material";
 import CustomButton from "./CustomButton";
 
 const Header = () => {

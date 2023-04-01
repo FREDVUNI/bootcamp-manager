@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/system";
+import { Box,Container } from "@mui/system";
 import axios from "axios";
+import { CircularProgress, Grid } from "@mui/material";
+import BootcampCard from "../components/BootcampCard";
 
 const Home = () => {
   const [bootcamps, setBootcamps] = useState([]);
@@ -11,14 +13,13 @@ const Home = () => {
       setLoading(true);
       let cancel;
       try {
-        let { res } = await axios({
+        let res = await axios({
           mode: "cors",
           method: "GET",
           url: `http://localhost:4001/bootcamps/api/v1`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
-        setBootcamps(res.data);
-        console.log(res.data);
+        setBootcamps(res.data.data);
         setLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -27,6 +28,7 @@ const Home = () => {
 
     getBootcamps();
   }, []);
+  console.log(bootcamps);
   return (
     <Box
       sx={{
@@ -36,14 +38,39 @@ const Home = () => {
         gap: "2.5rem",
       }}
     >
-      {/* { loading &&
-        bootcamps.length > 0 ?
-        bootcamps.map((item) =>(
-          <h1>{item.name}</h1>
-        ))
-        :"bye"
-      } */}
-      Home
+      <Container sx={{ marginTop:'20px' }}>
+        <Grid container spacing={2}>
+          { 
+            loading ? (
+            <div sx={{
+                width:'100%',
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center'
+            }}>
+              <CircularProgress size="3rem"  thickness={5}/>
+            </div>
+            ):(
+              bootcamps.length > 0 ? (
+              bootcamps.map((bootcamp,index) =>(
+               <Grid item>
+                <BootcampCard key={index} bootcamp={bootcamp}/>
+               </Grid>
+              ))
+              ):(
+                <p sx={{
+                  width:'100%',
+                  display:'flex',
+                  justifyContent:'center',
+                  alignItems:'center'
+                }}>
+                  There are bootcamps
+                </p>
+              )
+            )
+          }
+        </Grid>
+      </Container>
     </Box>
   );
 };
