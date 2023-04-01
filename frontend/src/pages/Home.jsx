@@ -52,9 +52,9 @@ const Home = () => {
             </div>
             ):(
               bootcamps.length > 0 ? (
-              bootcamps.map((bootcamp,index) =>(
-               <Grid item>
-                <BootcampCard key={index} bootcamp={bootcamp}/>
+              bootcamps.map((bootcamp) =>(
+               <Grid item key={bootcamp._id} xs={12} sm={6} md={4} lg={3}>
+                <BootcampCard bootcamp={bootcamp}/>
                </Grid>
               ))
               ):(
@@ -62,7 +62,8 @@ const Home = () => {
                   width:'100%',
                   display:'flex',
                   justifyContent:'center',
-                  alignItems:'center'
+                  alignItems:'center',
+                  fontSize:'18px'
                 }}>
                   There are bootcamps
                 </p>
