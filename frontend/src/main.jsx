@@ -6,7 +6,7 @@ import { BootcampProvider } from "./context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BootcampProvider>
+    <BootcampProvider value={{ bootcamps,setBootcamps,loading }}>
       <App />
     </BootcampProvider>
   </React.StrictMode>
