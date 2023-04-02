@@ -1,5 +1,5 @@
 import React from "react";
-import { NotFoundSvg } from "../images/hero_illustration.svg";
+import NotFoundSvg  from "../images/hero_illustration.svg";
 
 const NotFound = () => {
   return (
