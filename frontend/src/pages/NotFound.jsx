@@ -1,47 +1,64 @@
+import { Box, styled, Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import React from "react";
-import NotFoundSvg from "../images/hero_illustration.svg";
+import NotFoundImg from "../images/hero_illustration.svg";
+import CustomButton from "../components/CustomButton";
 
 const NotFound = () => {
-  return (
-    <div
-      sx={{
-        flexDirection: "flex flex-col",
-        JustifyContent: "justify-center",
-        alignItems: "items-center",
-        height: "h-screen",
-      }}
-    >
-      <img
-        src={NotFoundSvg}
-        alt="not-found"
-        sx={{
-          height: "48px",
-          width: "48px",
-          color: "gray",
-          marginBotom: "8px",
-        }}
-      />
-      <h1
-        sx={{
-          size: "10px",
-          fontWeight: "bold",
-          color: "gray",
-          marginBottom: "4px",
-        }}
-      >
-        404 - Page Not Found
-      </h1>
+  const CustomBox = styled(Box)(({ theme }) => ({
+    display: "flex",
+    justifyContent: "",
+    gap: theme.spacing(5),
+    marginTop: theme.spacing(15),
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
+    },
+  }));
 
-      <p
-        sx={{
-          size: "10px",
-          color: "gray",
-          marginBottom: "8px",
-        }}
-      >
-        Sorry, the page you are looking for could not be found.
-      </p>
-    </div>
+  const Title = styled(Typography)(({ theme }) => ({
+    fontSize: "42px",
+    color: "#000336",
+    fontWeight: "bold",
+    margin: theme.spacing(4, 0, 4, 0),
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "40px",
+    },
+  }));
+
+  return (
+    <Box sx={{ backgroundColor: "", minHeight: "80vh" }}>
+      <Container>
+        <CustomBox>
+        <Box sx={{ flex: "1.25" }}>
+            <img
+              src={NotFoundImg}
+              alt="heroImg"
+              style={{ maxWidth: "100%", marginBottom: "2rem" }}
+            />
+          </Box>
+          <Box sx={{ flex: "1" }}>
+            <Title variant="h1">
+            404 - Page Not Found
+            </Title>
+            <Typography
+              variant="body2"
+              sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}
+            >
+              Sorry, the page you are looking for could not be found.
+            </Typography>
+            <CustomButton
+              backgroundColor="#0F1B4C"
+              color="#fff"
+              buttonText="Go Back To Home"
+              heroBtn={true}
+              size="small"
+            />
+          </Box>
+        </CustomBox>
+      </Container>
+    </Box>
   );
 };
 
