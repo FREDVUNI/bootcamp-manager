@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
-import {styled} from "@mui/material";
+import { styled } from "@mui/material";
 import CustomButton from "./CustomButton";
 
 const Header = () => {
@@ -44,13 +44,6 @@ const Header = () => {
     width: "100%",
     paddingLeft: 0,
     paddingRight: 0,
-  }));
-
-  const NavbarLogo = styled("img")(({ theme }) => ({
-    cursor: "pointer",
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
   }));
 
   return (

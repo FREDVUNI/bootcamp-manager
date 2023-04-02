@@ -124,9 +124,27 @@ const Footer = () => {
             </Typography>
 
             <IconBox>
-              <Facebook style={{ cursor: "pointer",color:"#0F1B4C" ,fontSize:"30px" }}/>
-              <Twitter style={{ cursor: "pointer",color:"#0F1B4C" ,fontSize:"30px" }}/>
-              <LinkedIn style={{ cursor: "pointer",color:"#0F1B4C" ,fontSize:"30px" }}/>
+              <Facebook
+                style={{
+                  cursor: "pointer",
+                  color: "#0F1B4C",
+                  fontSize: "30px",
+                }}
+              />
+              <Twitter
+                style={{
+                  cursor: "pointer",
+                  color: "#0F1B4C",
+                  fontSize: "30px",
+                }}
+              />
+              <LinkedIn
+                style={{
+                  cursor: "pointer",
+                  color: "#0F1B4C",
+                  fontSize: "30px",
+                }}
+              />
             </IconBox>
           </Box>
         </CustomContainer>

@@ -12,7 +12,6 @@ import React from "react";
 
 const BootcampCard = ({ bootcamp }) => {
   return (
-    // <div>{bootcamp.name}</div>
     <Card>
       <CardHeader avatar={<Avatar />} title={<Typography></Typography>} />
       <CardContent>
@@ -28,7 +27,11 @@ const BootcampCard = ({ bootcamp }) => {
           position={0.5}
         />
         <CardActions>
-          <Button variant="contained" size="small" sx={{ background:'#0F1B4C', color:'#fff', borderRadius:'0px' }}>
+          <Button
+            variant="contained"
+            size="small"
+            sx={{ background: "#0F1B4C", color: "#fff", borderRadius: "0px" }}
+          >
             Book Now
           </Button>
           <Button size="small" color="primary">
