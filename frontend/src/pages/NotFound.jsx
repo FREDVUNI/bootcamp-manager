@@ -15,8 +15,8 @@ const NotFound = () => {
         src={NotFoundSvg}
         alt="not-found"
         sx={{
-          height: "h-48",
-          width: "w-48",
+          height: "48px",
+          width: "48px",
           color: "gray",
           marginBotom: "8px",
         }}
