@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Box,Container } from "@mui/system";
-import axios from "axios";
 import { CircularProgress, Grid } from "@mui/material";
 import BootcampCard from "../components/BootcampCard";
 
