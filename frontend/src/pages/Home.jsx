@@ -7,7 +7,7 @@ import { bootcampContext } from "../context";
 const Home = () => {
   const { bootcamps, setBootcamps, loading } = useContext(bootcampContext);
 
-  console.log(process.env.BASE_URL);
+  console.log(bootcamps);
   return (
     <Box
       sx={{

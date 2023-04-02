@@ -14,7 +14,7 @@ export const BootcampProvider = ({ children }) => {
         let res = await axios({
           mode: "cors",
           method: "GET",
-          url: `${process.env.BASE_URL}/api/v1`,
+          url: `http://localhost:4001/bootcamps/api/v1`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 
@@ -29,7 +29,7 @@ export const BootcampProvider = ({ children }) => {
   }, []);
 
   return (
-    <bootcampContext.Provider value={{ bootcamps, setBootcamps,loading }}>
+    <bootcampContext.Provider value={{ bootcamps, setBootcamps, loading }}>
       {children}
     </bootcampContext.Provider>
   );
