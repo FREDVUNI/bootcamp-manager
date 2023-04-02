@@ -1,35 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Box,Container } from "@mui/system";
 import axios from "axios";
 import { CircularProgress, Grid } from "@mui/material";
 import BootcampCard from "../components/BootcampCard";
 
 const Home = () => {
-  // const [bootcamps, setBootcamps] = useState([]);
-  // const [loading, setLoading] = useState(false);
 
   const { bootcamps,setBootcamps } = useContext()
 
-  useEffect(() => {
-    const getBootcamps = async () => {
-      setLoading(true);
-      let cancel;
-      try {
-        let res = await axios({
-          mode: "cors",
-          method: "GET",
-          url: `http://localhost:4001/bootcamps/api/v1`,
-          cancelToken: new axios.CancelToken((c) => (cancel = c)),
-        });
-        setBootcamps(res.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    getBootcamps();
-  }, []);
   console.log(bootcamps);
   return (
     <Box

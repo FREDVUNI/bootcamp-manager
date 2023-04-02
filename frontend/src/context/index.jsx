@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const bootcampContext = createContext();
-export const BootcampContext = ({ children }) => {
+export const BootcampProvider = ({ children }) => {
   const [bootcamps, setBootcamps] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +14,7 @@ export const BootcampContext = ({ children }) => {
         let res = await axios({
           mode: "cors",
           method: "GET",
-          url: `http://localhost:4001/bootcamps/api/v1`,
+          url: `${process.env.BASE_URL}/api/v1`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 
@@ -29,10 +29,10 @@ export const BootcampContext = ({ children }) => {
   }, []);
 
   return (
-    <bootcampContext.Provider value={{ bootcamps, setBootcamps }}>
+    <bootcampContext.Provider value={{ bootcamps, setBootcamps,loading }}>
       {children}
     </bootcampContext.Provider>
   );
 };
 
-export default BootcampContext;
+export default BootcampProvider;
