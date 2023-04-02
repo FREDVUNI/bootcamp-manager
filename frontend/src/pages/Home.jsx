@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box,Container } from "@mui/system";
 import axios from "axios";
 import { CircularProgress, Grid } from "@mui/material";
 import BootcampCard from "../components/BootcampCard";
 
 const Home = () => {
-  const [bootcamps, setBootcamps] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [bootcamps, setBootcamps] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  const { bootcamps,setBootcamps } = useContext()
 
   useEffect(() => {
     const getBootcamps = async () => {
