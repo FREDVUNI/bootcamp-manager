@@ -7,6 +7,7 @@ export const BootcampProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [sliderMax, setSliderMax] = useState(1000);
   const [priceRange, setPriceRange] = useState([25,75]);
+  const [filter, setFilter] = useState('');
 
   const formatter = new Intl.NumberFormat("en-us", {
     style: "currency",
@@ -36,7 +37,7 @@ export const BootcampProvider = ({ children }) => {
     };
 
     fetchBootcamps();
-  }, []);
+  }, [filter]);
 
   return (
     <bootcampContext.Provider
@@ -48,7 +49,9 @@ export const BootcampProvider = ({ children }) => {
         sliderMax,
         setSliderMax,
         priceRange,
-        setPriceRange
+        setPriceRange,
+        filter,
+        setFilter
       }}
     >
       {children}

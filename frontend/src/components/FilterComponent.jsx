@@ -11,10 +11,30 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { bootcampContext } from "../context";
+import { useNavigate } from 'react-router-dom'
 
 const FilterComponent = () => {
-  const { loading, sliderMax, setSliderMax, priceRange, setPriceRange } =
-    useContext(bootcampContext);
+  const {
+    loading,
+    sliderMax,
+    setSliderMax,
+    priceRange,
+    setPriceRange,
+    filter,
+    setFilter,
+  } = useContext(bootcampContext);
+
+  const navigate = useNavigate()
+
+  const commitChangeHandler = (e, newValue) => {
+    changeFilter(newValue);
+  };
+
+  const changeFilter = (newValue) => {
+    const urlFilter = `?price[gte]=${newValue[0]}&price[lte]=${newValue[1]}`;
+    setFilter(urlFilter);
+    navigate(urlFilter,{ replace: true })
+  };
 
   return (
     <Paper
@@ -25,16 +45,17 @@ const FilterComponent = () => {
         borderRadius: "0px",
       }}
     >
-      <Grid container>
+      <Grid container spacing={15}>
         <Grid item xs={12} sm={6} sx={{ marginBottom: "1rem" }}>
           <Typography gutterBottom>Filters</Typography>
-          <div sx={{ padding: "0 1.5rem 2rem 5rem" }}>
+          <div sx={{ padding: "0 1.5rem" }}>
             <Slider
               min={0}
               max={sliderMax}
               value={priceRange}
               valueLabelDisplay="auto"
               onChange={(e, newValue) => setPriceRange(newValue)}
+              onChangeCommitted={commitChangeHandler}
             />
             <div sx={{ display: "flex", justifyContent: "space-between" }}>
               <TextField
