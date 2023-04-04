@@ -6,7 +6,7 @@ import { bootcampContext } from "../context";
 import Hero from "../components/Hero";
 
 const Home = () => {
-  const { bootcamps, setBootcamps, loading } = useContext(bootcampContext);
+  const { bootcamps, loading } = useContext(bootcampContext);
 
   console.log(bootcamps);
   return (
