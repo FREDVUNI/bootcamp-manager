@@ -8,16 +8,18 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import React from "react";
+import React,{ useContext } from "react";
+import { bootcampContext } from "../context";
 
 const BootcampCard = ({ bootcamp }) => {
+  const { formatter } = useContext(bootcampContext)
   return (
     <Card>
       <CardHeader avatar={<Avatar />} title={<Typography></Typography>} />
       <CardContent>
         <Typography variant="caption">{bootcamp.description}</Typography>
         <Typography variant="h6" gutterBottom>
-          ${bootcamp.price}
+          {formatter.format(bootcamp.price)}
         </Typography>
         <Rating
           value={bootcamp.rating}

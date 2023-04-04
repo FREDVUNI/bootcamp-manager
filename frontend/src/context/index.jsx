@@ -5,6 +5,12 @@ export const bootcampContext = createContext();
 export const BootcampProvider = ({ children }) => {
   const [bootcamps, setBootcamps] = useState([]);
   const [loading, setLoading] = useState(false);
+  
+  const formatter = new Intl.NumberFormat("en-us",{
+    style:"currency",
+    currency:"USD",
+    maximumFractionDigits:2
+  })
 
   useEffect(() => {
     const fetchBootcamps = async () => {
@@ -29,7 +35,7 @@ export const BootcampProvider = ({ children }) => {
   }, []);
 
   return (
-    <bootcampContext.Provider value={{ bootcamps, setBootcamps, loading }}>
+    <bootcampContext.Provider value={{ bootcamps, setBootcamps, loading,formatter }}>
       {children}
     </bootcampContext.Provider>
   );
