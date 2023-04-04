@@ -4,6 +4,7 @@ import { CircularProgress, Grid } from "@mui/material";
 import BootcampCard from "../components/BootcampCard";
 import { bootcampContext } from "../context";
 import Hero from "../components/Hero";
+import FilterComponent from "../components/FilterComponent";
 
 const Home = () => {
   const { bootcamps, loading } = useContext(bootcampContext);
@@ -21,17 +22,20 @@ const Home = () => {
         }}
       >
         <Container sx={{ marginTop: "20px" }}>
+          <FilterComponent />
           <Grid container spacing={2}>
             {loading ? (
-              <div
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <CircularProgress size="3rem" thickness={5} />
+              <div>
+                <CircularProgress
+                  size="3rem"
+                  thickness={5}
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                />
               </div>
             ) : bootcamps.length > 0 ? (
               bootcamps.map((bootcamp) => (
