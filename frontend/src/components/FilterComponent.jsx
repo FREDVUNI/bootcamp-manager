@@ -13,7 +13,8 @@ import React, { useContext } from "react";
 import { bootcampContext } from "../context";
 
 const FilterComponent = () => {
-  const { loading } = useContext(bootcampContext);
+  const { loading, sliderMax, setSliderMax, priceRange, setPriceRange } =
+    useContext(bootcampContext);
 
   return (
     <Paper
@@ -28,7 +29,13 @@ const FilterComponent = () => {
         <Grid item xs={12} sm={6} sx={{ marginBottom: "1rem" }}>
           <Typography gutterBottom>Filters</Typography>
           <div sx={{ padding: "0 1.5rem 2rem 5rem" }}>
-            <Slider min={0} max={100} />
+            <Slider
+              min={0}
+              max={sliderMax}
+              value={priceRange}
+              valueLabelDisplay="auto"
+              onChange={(e, newValue) => setPriceRange(newValue)}
+            />
             <div sx={{ display: "flex", justifyContent: "space-between" }}>
               <TextField
                 size="small"

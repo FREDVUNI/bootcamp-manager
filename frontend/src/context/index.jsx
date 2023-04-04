@@ -5,14 +5,16 @@ export const bootcampContext = createContext();
 export const BootcampProvider = ({ children }) => {
   const [bootcamps, setBootcamps] = useState([]);
   const [loading, setLoading] = useState(false);
-  
-  const formatter = new Intl.NumberFormat("en-us",{
-    style:"currency",
-    currency:"USD",
-    maximumFractionDigits:2
-  })
+  const [sliderMax, setSliderMax] = useState(1000);
+  const [priceRange, setPriceRange] = useState([25,75]);
 
-  const BASE_URL = import.meta.env.VITE_BASE_URL
+  const formatter = new Intl.NumberFormat("en-us", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 2,
+  });
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchBootcamps = async () => {
@@ -37,7 +39,18 @@ export const BootcampProvider = ({ children }) => {
   }, []);
 
   return (
-    <bootcampContext.Provider value={{ bootcamps, setBootcamps, loading,formatter }}>
+    <bootcampContext.Provider
+      value={{
+        bootcamps,
+        setBootcamps,
+        loading,
+        formatter,
+        sliderMax,
+        setSliderMax,
+        priceRange,
+        setPriceRange
+      }}
+    >
       {children}
     </bootcampContext.Provider>
   );
