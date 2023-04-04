@@ -12,6 +12,8 @@ export const BootcampProvider = ({ children }) => {
     maximumFractionDigits:2
   })
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL
+
   useEffect(() => {
     const fetchBootcamps = async () => {
       setLoading(true);
@@ -20,7 +22,7 @@ export const BootcampProvider = ({ children }) => {
         let res = await axios({
           mode: "cors",
           method: "GET",
-          url: `http://localhost:4001/bootcamps/api/v1`,
+          url: `${BASE_URL}`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 
