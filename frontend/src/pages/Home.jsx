@@ -25,18 +25,16 @@ const Home = () => {
           <FilterComponent />
           <Grid container spacing={2}>
             {loading ? (
-              <div>
-                <CircularProgress
-                  size="3rem"
-                  thickness={5}
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                />
-              </div>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CircularProgress size="3rem" thickness={5} />
+              </Box>
             ) : bootcamps.length > 0 ? (
               bootcamps.map((bootcamp) => (
                 <Grid item key={bootcamp._id} xs={12} sm={6} md={4} lg={3}>
