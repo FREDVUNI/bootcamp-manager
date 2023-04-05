@@ -52,6 +52,13 @@ export const getBootcamps = async (req, res) => {
     }
 
     const bootcamps = await query;
+
+    const max_price = await Bootcamp.find().sort({price:-1}).limit(1).select("-_id price")
+    const min_price = await Bootcamp.find().sort({price:1}).limit(1).select("-_id price")
+
+    ui_values.max_price = max_price[0].price
+    ui_values.min_price = min_price[0].price
+
     res.status(200).json({
       success: true,
       data: bootcamps,
