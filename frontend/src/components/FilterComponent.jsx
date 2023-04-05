@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   FormControlLabel,
   Grid,
@@ -11,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { bootcampContext } from "../context";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const FilterComponent = () => {
   const {
@@ -22,9 +23,35 @@ const FilterComponent = () => {
     setPriceRange,
     filter,
     setFilter,
+    priceOrder,
+    setPriceOrder,
+    setSorting,
+    sorting,
   } = useContext(bootcampContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const handleChange = (e, type) => {
+    let newRange;
+
+    if (type === "lower") {
+      newRange = [...priceRange];
+      newRange[0] = Number(e.target.value);
+
+      setPriceRange(newRange);
+    }
+
+    if (type === "upper") {
+      newRange = [...priceRange];
+      newRange[1] = Number(e.target.value);
+
+      setPriceRange(newRange);
+    }
+  };
+
+  const handleBlur = () => {
+    changeFilter(priceRange);
+  };
 
   const commitChangeHandler = (e, newValue) => {
     changeFilter(newValue);
@@ -33,8 +60,26 @@ const FilterComponent = () => {
   const changeFilter = (newValue) => {
     const urlFilter = `?price[gte]=${newValue[0]}&price[lte]=${newValue[1]}`;
     setFilter(urlFilter);
-    navigate(urlFilter,{ replace: true })
+    navigate(urlFilter, { replace: true });
   };
+
+  const handleSortChange = (e) => {
+    setPriceOrder(e.target.value);
+
+    if (e.target.value === "ascending") {
+      setSorting("price");
+    } else if (e.target.value === "descending") {
+      setSorting("-price");
+    }
+  };
+
+  const clearFilterSort = (e) =>{
+    e.preventDefault()
+    setFilter("")
+    setSorting("")
+    setPriceRange([0,sliderMax])
+    navigate('/',{replace:true})
+  }
 
   return (
     <Paper
@@ -54,6 +99,7 @@ const FilterComponent = () => {
               max={sliderMax}
               value={priceRange}
               valueLabelDisplay="auto"
+              disabled={loading}
               onChange={(e, newValue) => setPriceRange(newValue)}
               onChangeCommitted={commitChangeHandler}
             />
@@ -65,7 +111,9 @@ const FilterComponent = () => {
                 variant="outlined"
                 type="number"
                 disabled={loading}
-                value={0}
+                value={priceRange[0]}
+                onChange={(e) => handleChange(e, "lower")}
+                onBlur={handleBlur}
               />
               <TextField
                 size="small"
@@ -74,7 +122,9 @@ const FilterComponent = () => {
                 variant="outlined"
                 type="number"
                 disabled={loading}
-                value={75}
+                value={priceRange[1]}
+                onChange={(e) => handleChange(e, "upper")}
+                onBlur={handleBlur}
               />
             </div>
           </div>
@@ -82,21 +132,29 @@ const FilterComponent = () => {
         <Grid item xs={12} sm={6}>
           <Typography gutterBottom>Sort By</Typography>
           <FormControl component="fieldset">
-            <RadioGroup aria-label="price-order" name="price-order">
+            <RadioGroup
+              aria-label="price-order"
+              name="price-order"
+              value={priceOrder}
+              onChange={handleSortChange}
+            >
               <FormControlLabel
                 disabled={loading}
                 control={<Radio />}
                 label="Price: Highest to Lowest"
+                value="descending"
               />
               <FormControlLabel
                 disabled={loading}
                 control={<Radio />}
                 label="Price: Lowest to Highest"
+                value="ascending"
               />
             </RadioGroup>
           </FormControl>
         </Grid>
       </Grid>
+      <Button size="small" onClick={clearFilterSort}>clear all</Button>
     </Paper>
   );
 };
