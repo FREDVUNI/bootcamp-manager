@@ -4,10 +4,20 @@ export const getBootcamps = async (req, res) => {
   try {
     let query;
 
+    let ui_values ={
+      filtering:{},
+      sorting:{}
+    }
+
     const reqQuery = { ...req.query }
     const removeField = ["sort"]
     removeField.forEach((val) => delete reqQuery[val]) 
     let queryStr = JSON.stringify(reqQuery)
+
+    const filterKeys = object.keys(reqQuery)
+    const filterValues = object.values(reqQuery)
+
+    filterKeys.forEach((val,index) => ui_values.filtering[val] = filterValues[index])
 
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`)
     // console.log(queryStr)
@@ -16,6 +26,19 @@ export const getBootcamps = async (req, res) => {
 
     if(req.query.sort){
       const sortByArr = req.query.sort.split(",")
+
+      sortByArr.forEach(val =>{
+        let order;
+
+        if(val[0] === "-"){
+          order = "descending"
+        }else{
+          order = "ascending"
+        }
+
+        ui_values.sorting[value.replace("-","")] = order
+      })
+
       const sortByStr = sortByArr.join("") 
 
       query = query.sort(sortByStr)
@@ -27,6 +50,7 @@ export const getBootcamps = async (req, res) => {
     res.status(200).json({
       success: true,
       data: bootcamps,
+      ui_values
     });
   } catch (error) {
     return res.status(500).json({
