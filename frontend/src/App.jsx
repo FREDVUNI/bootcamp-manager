@@ -7,14 +7,14 @@ import BootcampProvider from "./context";
 function App() {
   return (
     <div>
-      <BootcampProvider>
-        <Router>
+      <Router>
+        <BootcampProvider>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Router>
-      </BootcampProvider>
+        </BootcampProvider>
+      </Router>
       <Footer />
     </div>
   );

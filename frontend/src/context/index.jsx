@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export const bootcampContext = createContext();
 export const BootcampProvider = ({ children }) => {
@@ -8,6 +9,9 @@ export const BootcampProvider = ({ children }) => {
   const [sliderMax, setSliderMax] = useState(1000);
   const [priceRange, setPriceRange] = useState([25,75]);
   const [filter, setFilter] = useState('');
+
+  const location = useLocation()
+  let params = location.search ? location.search : ''
 
   const formatter = new Intl.NumberFormat("en-us", {
     style: "currency",
@@ -20,12 +24,21 @@ export const BootcampProvider = ({ children }) => {
   useEffect(() => {
     const fetchBootcamps = async () => {
       setLoading(true);
+
+      let query;
+
+      if(!filter && params){
+        query = params
+      }else{
+        query = filter
+      }
+
       try {
         let cancel;
         let res = await axios({
           mode: "cors",
           method: "GET",
-          url: `${BASE_URL}`,
+          url: `${BASE_URL}/${query}`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 
@@ -34,10 +47,12 @@ export const BootcampProvider = ({ children }) => {
       } catch (error) {
         console.log(error.message);
       }
+
+      return () => cancel()
     };
 
     fetchBootcamps();
-  }, [filter]);
+  }, [filter,params]);
 
   return (
     <bootcampContext.Provider
@@ -51,7 +66,8 @@ export const BootcampProvider = ({ children }) => {
         priceRange,
         setPriceRange,
         filter,
-        setFilter
+        setFilter,
+        params
       }}
     >
       {children}
