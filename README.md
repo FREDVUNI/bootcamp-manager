@@ -1,8 +1,8 @@
-## Bootcamp Manager
+# Bootcamp Manager
 
 Bootcamp Manager is a simple web application that allows users to create, view, update, and delete bootcamp information.
 
-### Installation
+## Installation
 
 To install bootcamp Manager, follow these steps:
 
@@ -12,7 +12,7 @@ Install the dependencies: npm install
 Usage
 To use bootcamp Manager, follow these steps:
 
-#### Start the application
+### Start the application
 
 npm start
 Open a web browser and navigate to <http://localhost:3000>
